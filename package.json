@@ -9,7 +9,7 @@
     "start": "json-server --watch db.json --port $PORT --host 0.0.0.0",
     "start:prod": "concurrently \"json-server --watch db.json --port 3001 --host 0.0.0.0\" \"serve -s dist -l 3000\"",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "preview": "vite preview --host",
     "json-server": "json-server --watch db.json --port 3001",
     "dev:full": "concurrently \"npm run json-server\" \"npm run dev\""
   },
