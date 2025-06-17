@@ -1,0 +1,129 @@
+{
+  "properties": [
+    {
+      "title": "Modern Studio in Ho Chi Minh City Center",
+      "description": "Beautiful modern studio apartment in the heart of District 1, perfect for expats. Fully furnished with high-speed internet, air conditioning, and modern amenities. Walking distance to cafes, restaurants, and business district.",
+      "price": 600,
+      "currency": "USD",
+      "location": {
+        "city": "Ho Chi Minh City",
+        "district": "District 1",
+        "address": "123 Nguyen Hue Street"
+      },
+      "type": "Studio",
+      "bedrooms": 0,
+      "bathrooms": 1,
+      "area": 35,
+      "amenities": [
+        "WiFi",
+        "Air Conditioning",
+        "Kitchen",
+        "Washing Machine",
+        "Balcony",
+        "Security",
+        "Elevator",
+        "Workspace",
+        "Private Pool"
+      ],
+      "images": [
+        "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg"
+      ],
+      "host": {
+        "name": "Linh Nguyen",
+        "rating": 4.8,
+        "reviews": 127,
+        "languages": [
+          "Vietnamese",
+          "English"
+        ],
+        "responseTime": "within 1 hour",
+        "avatar": ""
+      },
+      "available": true,
+      "minStay": 1,
+      "maxStay": 12,
+      "id": 1
+    },
+    {
+      "title": "MS",
+      "description": "Superr",
+      "price": 2000,
+      "currency": "USD",
+      "location": {
+        "city": "Bangkok",
+        "district": "Bangkok",
+        "address": "Bangkok"
+      },
+      "type": "Studio",
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "area": 200,
+      "amenities": [
+        "WiFi",
+        "Air Conditioning",
+        "Security",
+        "Balcony",
+        "Gym",
+        "Parking",
+        "Workspace",
+        "City View",
+        "Washing Machine",
+        "Kitchen",
+        "Elevator",
+        "Private Pool",
+        "Garden"
+      ],
+      "images": [],
+      "host": {
+        "name": "MSK",
+        "rating": 4.5,
+        "reviews": 0,
+        "languages": [
+          "English"
+        ],
+        "responseTime": "within 1 hour",
+        "avatar": ""
+      },
+      "available": true,
+      "minStay": 1,
+      "maxStay": 12,
+      "id": 2
+    }
+  ],
+  "bookings": [
+    {
+      "propertyId": 1,
+      "guestInfo": {
+        "name": "MERUGU SATHWIK",
+        "email": "a@a.com",
+        "phone": "+917995854143",
+        "nationality": "United Kingdom"
+      },
+      "stayDetails": {
+        "moveInDate": "2025-06-18",
+        "duration": 1,
+        "durationType": "months"
+      },
+      "message": "I need it urgently",
+      "createdAt": "2025-06-17T13:41:54.845Z",
+      "id": 1
+    },
+    {
+      "propertyId": 1,
+      "guestInfo": {
+        "name": "MSK",
+        "email": "a@a.com",
+        "phone": "+917995854143",
+        "nationality": "United Kingdom"
+      },
+      "stayDetails": {
+        "moveInDate": "2025-06-18",
+        "duration": 1,
+        "durationType": "months"
+      },
+      "message": "I need it fastly",
+      "createdAt": "2025-06-17T13:50:54.571Z",
+      "id": 2
+    }
+  ]
+}
