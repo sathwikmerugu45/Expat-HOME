@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: expat-housing-platform-api
+    env: node
+    buildCommand: npm install
+    startCommand: json-server --watch db.json --port $PORT --host 0.0.0.0
+    envVars:
+      - key: NODE_ENV
+        value: production
+  - type: web
+    name: expat-housing-platform-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: serve -s dist -l $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_BASE_URL
+        value: https://expat-housing-platform-api.onrender.com
