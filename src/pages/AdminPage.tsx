@@ -47,14 +47,14 @@ const AdminPage: React.FC = () => {
   }, []);
 
   const fetchProperties = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/properties');
-      const data = await response.json();
-      setProperties(data);
-    } catch (error) {
-      console.error('Error fetching properties:', error);
-    }
-  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/properties`);
+    const data = await response.json();
+    setProperties(data);
+  } catch (error) {
+    console.error('Error fetching properties:', error);
+  }
+};
 
   const resetForm = () => {
     setFormData({
@@ -149,16 +149,19 @@ const AdminPage: React.FC = () => {
     try {
       let response;
       if (isEditing && editingProperty) {
-        response = await fetch(`http://localhost:3001/properties/${editingProperty.id}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...propertyData, id: editingProperty.id })
-        });
+        response = await fetch(
+          `${API_BASE_URL}/properties/${editingProperty.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...propertyData, id: editingProperty.id }),
+          }
+        );
       } else {
-        response = await fetch('http://localhost:3001/properties', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(propertyData)
+        response = await fetch(`${API_BASE_URL}/properties`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(propertyData),
         });
       }
       
@@ -176,8 +179,8 @@ const AdminPage: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (confirm('Are you sure you want to delete this property?')) {
       try {
-        const response = await fetch(`http://localhost:3001/properties/${id}`, {
-          method: 'DELETE'
+        const response = await fetch(`${API_BASE_URL}/properties/${id}`, {
+          method: "DELETE",
         });
         if (response.ok) {
           fetchProperties();

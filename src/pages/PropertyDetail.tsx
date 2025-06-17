@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { Property, BookingRequest } from '../types';
+import { API_BASE_URL } from '../api';
 
 const PropertyDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +24,8 @@ const PropertyDetail: React.FC = () => {
 
   const fetchProperty = async (propertyId: number) => {
     try {
-      const response = await fetch(`http://localhost:3001/properties/${propertyId}`);
+      const response = await fetch(`${API_BASE_URL}/properties/${propertyId}`);
+      if (!response.ok) throw new Error('Property not found');
       const data = await response.json();
       setProperty(data);
     } catch (error) {
@@ -40,7 +42,7 @@ const PropertyDetail: React.FC = () => {
         createdAt: new Date().toISOString()
       };
 
-      const response = await fetch('http://localhost:3001/bookings', {
+      const response = await fetch(`${API_BASE_URL}/bookings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

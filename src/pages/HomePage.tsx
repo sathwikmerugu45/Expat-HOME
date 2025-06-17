@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropertyCard from '../components/PropertyCard';
 import FilterPanel from '../components/FilterPanel';
 import { Property, FilterOptions } from '../types';
+import { API_BASE_URL } from '../api';
 
 const HomePage: React.FC = () => {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -15,7 +16,7 @@ const HomePage: React.FC = () => {
 
   const fetchProperties = async () => {
     try {
-      const response = await fetch('http://localhost:3001/properties');
+      const response = await fetch(`${API_BASE_URL}/properties`);
       const data = await response.json();
       setProperties(data);
       setFilteredProperties(data);
