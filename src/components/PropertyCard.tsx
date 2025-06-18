@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Star, Bed, Bath, Square, Wifi, Car } from 'lucide-react';
+import { MapPin, Star, Bed, Bath, Square, Wifi, Car, Heart, Eye, Calendar } from 'lucide-react';
 import { Property } from '../types';
 
 interface PropertyCardProps {
@@ -8,6 +8,9 @@ interface PropertyCardProps {
 }
 
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const getAmenityIcon = (amenity: string) => {
     switch (amenity.toLowerCase()) {
       case 'wifi':
@@ -19,111 +22,165 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
     }
   };
 
+  const handleLikeClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+  };
+
   return (
-    <Link to={`/property/${property.id}`} className="group h-full">
-      <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-orange-100 group-hover:border-teal-200 group-hover:-translate-y-1 h-full flex flex-col">
-        {/* Image*/}
+    <Link to={`/property/${property.id}`} className="group h-full block">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-2xl dark:shadow-slate-900/50 transition-all duration-500 overflow-hidden border border-orange-100 dark:border-slate-700 group-hover:border-teal-200 dark:group-hover:border-teal-600 group-hover:-translate-y-2 h-full flex flex-col relative">
+        {/* Image with Loading Animation */}
         <div className="relative h-48 w-full overflow-hidden">
+          {!imageLoaded && (
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-600 dark:to-slate-700 animate-pulse"></div>
+          )}
           <img
             src={property.images[0]}
             alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-700 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setImageLoaded(true)}
           />
+          
+          {/* Floating Labels */}
           <div className="absolute top-3 left-3">
-            <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-slate-700 shadow-sm">
+            <span className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-lg border border-white/20 dark:border-slate-600/20">
               {property.type}
             </span>
           </div>
-          <div className="absolute top-3 right-3">
-            <span className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-sm">
+          
+          <div className="absolute top-3 right-3 flex space-x-2">
+            <span className="bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-600 dark:to-teal-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg animate-pulse">
               Available
             </span>
+            <button
+              onClick={handleLikeClick}
+              className={`p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
+                isLiked 
+                  ? 'bg-red-500 text-white shadow-lg scale-110' 
+                  : 'bg-white/90 dark:bg-slate-800/90 text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-800 hover:text-red-500 hover:scale-110'
+              }`}
+            >
+              <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
+            </button>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          {/* Hover Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div className="absolute bottom-4 left-4 right-4">
+              <div className="flex items-center justify-between text-white">
+                <div className="flex items-center space-x-2 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  <Eye className="h-4 w-4" />
+                  <span className="text-sm font-medium">View Details</span>
+                </div>
+                <div className="flex items-center space-x-1 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                  <Star className="h-4 w-4 text-amber-400 fill-current" />
+                  <span className="text-sm font-medium">{property.host.rating}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Content */}
-        <div className="p-5 flex-1 flex flex-col">
-          {/* Location */}
-          <div className="flex items-center text-slate-600 text-sm mb-2 min-h-[20px]">
-            <MapPin className="h-4 w-4 mr-1 text-orange-500" />
-            <span className="truncate">{property.location.district}, {property.location.city}</span>
+        <div className="p-6 flex-1 flex flex-col">
+          {/* Location with Animation */}
+          <div className="flex items-center text-slate-600 dark:text-slate-400 text-sm mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-300">
+            <div className="p-1 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 rounded-lg mr-2 group-hover:from-teal-100 group-hover:to-teal-200 dark:group-hover:from-teal-900/30 dark:group-hover:to-teal-800/30 transition-all duration-300">
+              <MapPin className="h-3 w-3 text-orange-600 dark:text-orange-400 group-hover:text-teal-600 dark:group-hover:text-teal-400" />
+            </div>
+            <span className="truncate font-medium">{property.location.district}, {property.location.city}</span>
           </div>
 
-          {/* Title*/}
-          <h3 className="font-semibold text-slate-900 mb-3 group-hover:text-teal-700 transition-colors line-clamp-2 text-lg min-h-[56px]">
+          {/* Title with Gradient Animation */}
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4 group-hover:bg-gradient-to-r group-hover:from-teal-600 group-hover:to-emerald-600 dark:group-hover:from-teal-400 dark:group-hover:to-emerald-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300 line-clamp-2 text-lg min-h-[56px] leading-tight">
             {property.title}
           </h3>
 
-          {/* Property Details */}
-          <div className="flex items-center space-x-2 text-sm text-slate-600 mb-4 flex-wrap">
+          {/* Property Details with Enhanced Styling */}
+          <div className="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400 mb-4 flex-wrap">
             {property.bedrooms > 0 && (
-              <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
-                <Bed className="h-4 w-4 mr-1 text-teal-600" />
-                <span>{property.bedrooms}</span>
+              <div className="flex items-center bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-600 px-3 py-2 rounded-xl mb-1 border border-slate-200 dark:border-slate-600 group-hover:from-teal-50 group-hover:to-teal-100 dark:group-hover:from-teal-900/30 dark:group-hover:to-teal-800/30 group-hover:border-teal-200 dark:group-hover:border-teal-600 transition-all duration-300">
+                <Bed className="h-4 w-4 mr-1.5 text-teal-600 dark:text-teal-400" />
+                <span className="font-medium">{property.bedrooms}</span>
               </div>
             )}
-            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
-              <Bath className="h-4 w-4 mr-1 text-teal-600" />
-              <span>{property.bathrooms}</span>
+            <div className="flex items-center bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-600 px-3 py-2 rounded-xl mb-1 border border-slate-200 dark:border-slate-600 group-hover:from-teal-50 group-hover:to-teal-100 dark:group-hover:from-teal-900/30 dark:group-hover:to-teal-800/30 group-hover:border-teal-200 dark:group-hover:border-teal-600 transition-all duration-300">
+              <Bath className="h-4 w-4 mr-1.5 text-teal-600 dark:text-teal-400" />
+              <span className="font-medium">{property.bathrooms}</span>
             </div>
-            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
-              <Square className="h-4 w-4 mr-1 text-teal-600" />
-              <span>{property.area}m²</span>
+            <div className="flex items-center bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-600 px-3 py-2 rounded-xl mb-1 border border-slate-200 dark:border-slate-600 group-hover:from-teal-50 group-hover:to-teal-100 dark:group-hover:from-teal-900/30 dark:group-hover:to-teal-800/30 group-hover:border-teal-200 dark:group-hover:border-teal-600 transition-all duration-300">
+              <Square className="h-4 w-4 mr-1.5 text-teal-600 dark:text-teal-400" />
+              <span className="font-medium">{property.area}m²</span>
             </div>
           </div>
 
-          {/* Amenities*/}
+          {/* Amenities with Stagger Animation */}
           <div className="flex flex-wrap gap-2 mb-4 min-h-[40px]">
-            {property.amenities.slice(0, 3).map((amenity) => (
+            {property.amenities.slice(0, 3).map((amenity, index) => (
               <span
                 key={amenity}
-                className="inline-flex items-center space-x-1 bg-gradient-to-r from-orange-50 to-orange-100 text-orange-700 px-2 py-1 rounded-lg text-xs font-medium"
+                className="inline-flex items-center space-x-1.5 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30 text-orange-700 dark:text-orange-400 px-3 py-1.5 rounded-xl text-xs font-semibold border border-orange-200 dark:border-orange-700 hover:from-orange-100 hover:to-orange-200 dark:hover:from-orange-800/30 dark:hover:to-orange-700/30 transition-all duration-300 hover:scale-105"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {getAmenityIcon(amenity)}
                 <span>{amenity}</span>
               </span>
             ))}
             {property.amenities.length > 3 && (
-              <span className="bg-slate-100 text-slate-700 px-2 py-1 rounded-lg text-xs font-medium">
+              <span className="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-600 hover:from-slate-200 hover:to-slate-300 dark:hover:from-slate-600 dark:hover:to-slate-500 transition-all duration-300">
                 +{property.amenities.length - 3} more
               </span>
             )}
           </div>
 
-          {/* Host Info */}
-          <div className="flex items-center justify-between mb-4 mt-auto">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 flex items-center justify-center">
-                <span className="text-white text-xs font-bold">
-                  {property.host.name.charAt(0)}
+          {/* Host Info with Enhanced Design */}
+          <div className="flex items-center justify-between mb-4 mt-auto p-3 bg-gradient-to-r from-slate-50 to-orange-50 dark:from-slate-700 dark:to-orange-900/30 rounded-xl border border-orange-100 dark:border-slate-600">
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 dark:from-teal-500 dark:to-emerald-500 flex items-center justify-center shadow-lg">
+                  <span className="text-white text-sm font-bold">
+                    {property.host.name.charAt(0)}
+                  </span>
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 dark:bg-green-500 rounded-full border-2 border-white dark:border-slate-800"></div>
+              </div>
+              <div>
+                <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 block">
+                  {property.host.name}
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400">
+                  {property.host.responseTime}
                 </span>
               </div>
-              <span className="text-sm text-slate-600 truncate max-w-[80px]">
-                {property.host.name}
-              </span>
             </div>
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-1 bg-white/80 dark:bg-slate-800/80 px-2 py-1 rounded-lg">
               <Star className="h-4 w-4 text-amber-400 fill-current" />
-              <span className="text-sm font-medium text-slate-700">
+              <span className="text-sm font-bold text-slate-700 dark:text-slate-300">
                 {property.host.rating}
               </span>
-              <span className="text-sm text-slate-500">
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 ({property.host.reviews})
               </span>
             </div>
           </div>
 
-          {/* Price */}
-          <div className="flex items-center justify-between">
+          {/* Price with Enhanced Styling */}
+          <div className="flex items-center justify-between p-4 bg-gradient-to-r from-white to-slate-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-slate-200 dark:border-slate-600">
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+              <span className="text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
                 ${property.price}
               </span>
-              <span className="text-slate-600 text-sm ml-1">/ month</span>
+              <span className="text-slate-600 dark:text-slate-400 text-sm ml-1 font-medium">/ month</span>
             </div>
-            <div className="text-sm text-slate-500 bg-slate-50 px-2 py-1 rounded-lg">
-              Min {property.minStay} month{property.minStay !== 1 ? 's' : ''}
+            <div className="flex items-center space-x-2">
+              <div className="text-sm text-slate-500 dark:text-slate-400 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/30 dark:to-emerald-900/30 px-3 py-1.5 rounded-lg border border-teal-200 dark:border-teal-700">
+                <Calendar className="h-3 w-3 inline mr-1" />
+                Min {property.minStay}m
+              </div>
             </div>
           </div>
         </div>

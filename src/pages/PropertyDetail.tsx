@@ -168,9 +168,11 @@ const PropertyDetail: React.FC = () => {
               <span>{property.location.address}, {property.location.district}, {property.location.city}</span>
             </div>
             
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
-              {property.title}
-            </h1>
+            <h1 className="text-3xl font-bold mb-4">
+  <span className="bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent dark:bg-none dark:text-white dark:text-opacity-100">
+    {property.title}
+  </span>
+</h1>
             
             <div className="flex items-center space-x-6 text-sm text-slate-600 mb-4">
               <div className="flex items-center bg-gradient-to-r from-teal-50 to-emerald-50 px-3 py-2 rounded-xl">
