@@ -224,297 +224,299 @@ const AdminPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-          Property Management
-        </h1>
-        <button
-          onClick={() => setShowForm(true)}
-          className="bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-6 py-3 rounded-xl hover:from-teal-600 hover:to-emerald-600 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Property</span>
-        </button>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-orange-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+            Property Management
+          </h1>
+          <button
+            onClick={() => setShowForm(true)}
+            className="bg-gradient-to-r from-teal-500 to-emerald-500 dark:from-teal-600 dark:to-emerald-600 text-white px-6 py-3 rounded-xl hover:from-teal-600 hover:to-emerald-600 dark:hover:from-teal-700 dark:hover:to-emerald-700 transition-all duration-200 flex items-center space-x-2 shadow-lg hover:shadow-xl"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Add Property</span>
+          </button>
+        </div>
 
-      {/* Property List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {properties.map(property => (
-          <div key={property.id} className="bg-white rounded-2xl shadow-sm border border-orange-200 overflow-hidden hover:shadow-lg transition-all duration-200">
-            <img
-              src={property.images[0]}
-              alt={property.title}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-5">
-              <h3 className="font-semibold text-slate-900 mb-2 line-clamp-2">{property.title}</h3>
-              <p className="text-slate-600 text-sm mb-2 flex items-center">
-                <span className="w-2 h-2 bg-orange-400 rounded-full mr-2"></span>
-                {property.location.city}
-              </p>
-              <p className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
-                ${property.price}/month
-              </p>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleEdit(property)}
-                  className="flex-1 bg-gradient-to-r from-slate-100 to-orange-100 text-slate-700 px-3 py-2 rounded-xl hover:from-slate-200 hover:to-orange-200 transition-all duration-200 flex items-center justify-center space-x-1 font-medium"
-                >
-                  <Edit className="h-4 w-4" />
-                  <span>Edit</span>
-                </button>
-                <button
-                  onClick={() => handleDelete(property.id)}
-                  className="flex-1 bg-gradient-to-r from-red-100 to-red-200 text-red-700 px-3 py-2 rounded-xl hover:from-red-200 hover:to-red-300 transition-all duration-200 flex items-center justify-center space-x-1 font-medium"
-                >
-                  <Trash2 className="h-4 w-4" />
-                  <span>Delete</span>
-                </button>
+        {/* Property List */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          {properties.map(property => (
+            <div key={property.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-orange-200 dark:border-slate-600 overflow-hidden hover:shadow-lg transition-all duration-200">
+              <img
+                src={property.images[0]}
+                alt={property.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2 line-clamp-2">{property.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mb-2 flex items-center">
+                  <span className="w-2 h-2 bg-orange-400 dark:bg-orange-500 rounded-full mr-2"></span>
+                  {property.location.city}
+                </p>
+                <p className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent mb-4">
+                  ${property.price}/month
+                </p>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleEdit(property)}
+                    className="flex-1 bg-gradient-to-r from-slate-100 to-orange-100 dark:from-slate-700 dark:to-orange-900/30 text-slate-700 dark:text-slate-300 px-3 py-2 rounded-xl hover:from-slate-200 hover:to-orange-200 dark:hover:from-slate-600 dark:hover:to-orange-900/50 transition-all duration-200 flex items-center justify-center space-x-1 font-medium"
+                  >
+                    <Edit className="h-4 w-4" />
+                    <span>Edit</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(property.id)}
+                    className="flex-1 bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 text-red-700 dark:text-red-400 px-3 py-2 rounded-xl hover:from-red-200 hover:to-red-300 dark:hover:from-red-900/50 dark:hover:to-red-800/50 transition-all duration-200 flex items-center justify-center space-x-1 font-medium"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    <span>Delete</span>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      {/* Form Modal */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
-                  {isEditing ? 'Edit Property' : 'Add New Property'}
-                </h2>
-                <button
-                  onClick={resetForm}
-                  className="text-slate-400 hover:text-slate-600 p-2 hover:bg-slate-100 rounded-xl transition-all duration-200"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
+        {/* Form Modal */}
+        {showForm && (
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+                    {isEditing ? 'Edit Property' : 'Add New Property'}
+                  </h2>
+                  <button
+                    onClick={resetForm}
+                    className="text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300 p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-200"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Basic Information */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Basic Information</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="Property Title"
-                      value={formData.title}
-                      onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Basic Information */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Basic Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        placeholder="Property Title"
+                        value={formData.title}
+                        onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                      <select
+                        value={formData.type}
+                        onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100"
+                      >
+                        {propertyTypes.map(type => (
+                          <option key={type} value={type}>{type}</option>
+                        ))}
+                      </select>
+                      <input
+                        type="number"
+                        placeholder="Price (USD/month)"
+                        value={formData.price || ''}
+                        onChange={(e) => setFormData(prev => ({ ...prev, price: parseInt(e.target.value) || 0 }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                      <input
+                        type="number"
+                        placeholder="Area (m²)"
+                        value={formData.area || ''}
+                        onChange={(e) => setFormData(prev => ({ ...prev, area: parseInt(e.target.value) || 0 }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                    </div>
+                    <textarea
+                      placeholder="Property Description"
+                      value={formData.description}
+                      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                      rows={4}
+                      className="w-full mt-4 border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
                       required
                     />
-                    <select
-                      value={formData.type}
-                      onChange={(e) => setFormData(prev => ({ ...prev, type: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
+                  </div>
+
+                  {/* Location */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Location</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <input
+                        type="text"
+                        placeholder="City"
+                        value={formData.city}
+                        onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="District"
+                        value={formData.district}
+                        onChange={(e) => setFormData(prev => ({ ...prev, district: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Address"
+                        value={formData.address}
+                        onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Property Details */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Property Details</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Bedrooms</label>
+                        <input
+                          type="number"
+                          min="0"
+                          value={formData.bedrooms}
+                          onChange={(e) => setFormData(prev => ({ ...prev, bedrooms: parseInt(e.target.value) || 0 }))}
+                          className="w-full border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Bathrooms</label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={formData.bathrooms}
+                          onChange={(e) => setFormData(prev => ({ ...prev, bathrooms: parseInt(e.target.value) || 1 }))}
+                          className="w-full border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Min Stay (months)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={formData.minStay}
+                          onChange={(e) => setFormData(prev => ({ ...prev, minStay: parseInt(e.target.value) || 1 }))}
+                          className="w-full border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Max Stay (months)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={formData.maxStay}
+                          onChange={(e) => setFormData(prev => ({ ...prev, maxStay: parseInt(e.target.value) || 12 }))}
+                          className="w-full border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Images */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Images</h3>
+                    {formData.images.map((image, index) => (
+                      <div key={index} className="flex space-x-2 mb-2">
+                        <input
+                          type="url"
+                          placeholder="Image URL"
+                          value={image}
+                          onChange={(e) => updateImage(index, e.target.value)}
+                          className="flex-1 border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        />
+                        {formData.images.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={() => removeImage(index)}
+                            className="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-all duration-200"
+                          >
+                            <X className="h-5 w-5" />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={addImageField}
+                      className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 text-sm font-medium"
                     >
-                      {propertyTypes.map(type => (
-                        <option key={type} value={type}>{type}</option>
+                      + Add another image
+                    </button>
+                  </div>
+
+                  {/* Amenities */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Amenities</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {amenityOptions.map(amenity => (
+                        <label key={amenity} className="flex items-center space-x-2 p-3 bg-gradient-to-r from-orange-50 to-teal-50 dark:from-orange-900/20 dark:to-teal-900/20 rounded-xl border border-orange-100 dark:border-slate-600 hover:from-orange-100 hover:to-teal-100 dark:hover:from-orange-900/30 dark:hover:to-teal-900/30 transition-all duration-200 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={formData.amenities.includes(amenity)}
+                            onChange={() => handleAmenityToggle(amenity)}
+                            className="rounded border-orange-300 dark:border-slate-500 text-teal-600 dark:text-teal-400 focus:ring-teal-500 dark:focus:ring-teal-400 bg-white dark:bg-slate-700"
+                          />
+                          <span className="text-sm text-slate-700 dark:text-slate-300 font-medium">{amenity}</span>
+                        </label>
                       ))}
-                    </select>
-                    <input
-                      type="number"
-                      placeholder="Price (USD/month)"
-                      value={formData.price || ''}
-                      onChange={(e) => setFormData(prev => ({ ...prev, price: parseInt(e.target.value) || 0 }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                    <input
-                      type="number"
-                      placeholder="Area (m²)"
-                      value={formData.area || ''}
-                      onChange={(e) => setFormData(prev => ({ ...prev, area: parseInt(e.target.value) || 0 }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                  </div>
-                  <textarea
-                    placeholder="Property Description"
-                    value={formData.description}
-                    onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-                    rows={4}
-                    className="w-full mt-4 border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                    required
-                  />
-                </div>
-
-                {/* Location */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Location</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <input
-                      type="text"
-                      placeholder="City"
-                      value={formData.city}
-                      onChange={(e) => setFormData(prev => ({ ...prev, city: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                    <input
-                      type="text"
-                      placeholder="District"
-                      value={formData.district}
-                      onChange={(e) => setFormData(prev => ({ ...prev, district: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                    <input
-                      type="text"
-                      placeholder="Address"
-                      value={formData.address}
-                      onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                  </div>
-                </div>
-
-                {/* Property Details */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Property Details</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Bedrooms</label>
-                      <input
-                        type="number"
-                        min="0"
-                        value={formData.bedrooms}
-                        onChange={(e) => setFormData(prev => ({ ...prev, bedrooms: parseInt(e.target.value) || 0 }))}
-                        className="w-full border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Bathrooms</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value={formData.bathrooms}
-                        onChange={(e) => setFormData(prev => ({ ...prev, bathrooms: parseInt(e.target.value) || 1 }))}
-                        className="w-full border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Min Stay (months)</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value={formData.minStay}
-                        onChange={(e) => setFormData(prev => ({ ...prev, minStay: parseInt(e.target.value) || 1 }))}
-                        className="w-full border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-1">Max Stay (months)</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value={formData.maxStay}
-                        onChange={(e) => setFormData(prev => ({ ...prev, maxStay: parseInt(e.target.value) || 12 }))}
-                        className="w-full border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      />
                     </div>
                   </div>
-                </div>
 
-                {/* Images */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Images</h3>
-                  {formData.images.map((image, index) => (
-                    <div key={index} className="flex space-x-2 mb-2">
+                  {/* Host Information */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4">Host Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <input
+                        type="text"
+                        placeholder="Host Name"
+                        value={formData.hostName}
+                        onChange={(e) => setFormData(prev => ({ ...prev, hostName: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
+                        required
+                      />
                       <input
                         type="url"
-                        placeholder="Image URL"
-                        value={image}
-                        onChange={(e) => updateImage(index, e.target.value)}
-                        className="flex-1 border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
+                        placeholder="Host Avatar URL (optional)"
+                        value={formData.hostAvatar}
+                        onChange={(e) => setFormData(prev => ({ ...prev, hostAvatar: e.target.value }))}
+                        className="border border-orange-200 dark:border-slate-600 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent bg-white/70 dark:bg-slate-700/70 text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400"
                       />
-                      {formData.images.length > 1 && (
-                        <button
-                          type="button"
-                          onClick={() => removeImage(index)}
-                          className="text-red-600 hover:text-red-700 p-2 hover:bg-red-50 rounded-xl transition-all duration-200"
-                        >
-                          <X className="h-5 w-5" />
-                        </button>
-                      )}
                     </div>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={addImageField}
-                    className="text-teal-600 hover:text-teal-700 text-sm font-medium"
-                  >
-                    + Add another image
-                  </button>
-                </div>
-
-                {/* Amenities */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Amenities</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    {amenityOptions.map(amenity => (
-                      <label key={amenity} className="flex items-center space-x-2 p-3 bg-gradient-to-r from-orange-50 to-teal-50 rounded-xl border border-orange-100 hover:from-orange-100 hover:to-teal-100 transition-all duration-200 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={formData.amenities.includes(amenity)}
-                          onChange={() => handleAmenityToggle(amenity)}
-                          className="rounded border-orange-300 text-teal-600 focus:ring-teal-500"
-                        />
-                        <span className="text-sm text-slate-700 font-medium">{amenity}</span>
-                      </label>
-                    ))}
                   </div>
-                </div>
 
-                {/* Host Information */}
-                <div>
-                  <h3 className="text-lg font-semibold text-slate-900 mb-4">Host Information</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="Host Name"
-                      value={formData.hostName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, hostName: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                      required
-                    />
-                    <input
-                      type="url"
-                      placeholder="Host Avatar URL (optional)"
-                      value={formData.hostAvatar}
-                      onChange={(e) => setFormData(prev => ({ ...prev, hostAvatar: e.target.value }))}
-                      className="border border-orange-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white/70"
-                    />
+                  {/* Submit Buttons */}
+                  <div className="flex space-x-4">
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className="flex-1 px-6 py-3 border border-orange-200 dark:border-slate-600 rounded-xl text-slate-700 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-slate-700 transition-all duration-200 font-medium"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="flex-1 px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 dark:from-teal-600 dark:to-emerald-600 text-white rounded-xl hover:from-teal-600 hover:to-emerald-600 dark:hover:from-teal-700 dark:hover:to-emerald-700 transition-all duration-200 flex items-center justify-center space-x-2 font-medium shadow-lg hover:shadow-xl"
+                    >
+                      <Save className="h-5 w-5" />
+                      <span>{isEditing ? 'Update Property' : 'Add Property'}</span>
+                    </button>
                   </div>
-                </div>
-
-                {/* Submit Buttons */}
-                <div className="flex space-x-4">
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="flex-1 px-6 py-3 border border-orange-200 rounded-xl text-slate-700 hover:bg-orange-50 transition-all duration-200 font-medium"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-teal-500 to-emerald-500 text-white rounded-xl hover:from-teal-600 hover:to-emerald-600 transition-all duration-200 flex items-center justify-center space-x-2 font-medium shadow-lg hover:shadow-xl"
-                  >
-                    <Save className="h-5 w-5" />
-                    <span>{isEditing ? 'Update Property' : 'Add Property'}</span>
-                  </button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
