@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Building, User, Globe, CalendarCheck, Moon, Sun } from 'lucide-react';
-import { useTheme } from '../contexts/themecontext';
+import { useTheme } from '../contexts/ThemeContext';
 
 interface LayoutProps {
   children: React.ReactNode;
