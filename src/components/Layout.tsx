@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Building, User, Globe } from 'lucide-react';
+import { Home, Building, User, Globe, CalendarCheck } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -35,6 +35,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               >
                 <Home className="h-4 w-4" />
                 <span>Find Homes</span>
+              </Link>
+              <Link
+                to="/bookings"
+                className={`flex items-center space-x-1 text-sm font-medium transition-all duration-200 ${
+                  location.pathname === '/bookings' 
+                    ? 'text-teal-600 bg-teal-50 px-3 py-2 rounded-lg' 
+                    : 'text-slate-700 hover:text-teal-600 hover:bg-teal-50 px-3 py-2 rounded-lg'
+                }`}
+              >
+                <CalendarCheck className="h-4 w-4" />
+                <span>My Bookings</span>
               </Link>
               <Link
                 to="/admin"
@@ -83,6 +94,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <h3 className="font-semibold mb-4 text-orange-300">For Guests</h3>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><Link to="/" className="hover:text-white transition-colors">Find Properties</Link></li>
+                <li><Link to="/bookings" className="hover:text-white transition-colors">My Bookings</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">How It Works</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
               </ul>

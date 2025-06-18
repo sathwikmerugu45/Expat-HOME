@@ -42,7 +42,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ property, onSubmit, onClose }
     if (!formData.nationality) newErrors.nationality = 'Nationality is required';
     if (!formData.moveInDate) newErrors.moveInDate = 'Move-in date is required';
 
-    // Check if move-in date is in the future
     const moveInDate = new Date(formData.moveInDate);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -50,7 +49,6 @@ const BookingForm: React.FC<BookingFormProps> = ({ property, onSubmit, onClose }
       newErrors.moveInDate = 'Move-in date must be in the future';
     }
 
-    // Check minimum stay requirement
     const durationInMonths = formData.durationType === 'months' ? formData.duration :
                             formData.durationType === 'weeks' ? formData.duration / 4.33 :
                             formData.duration / 30.44;

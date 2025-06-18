@@ -20,10 +20,10 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   };
 
   return (
-    <Link to={`/property/${property.id}`} className="group">
-      <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-orange-100 group-hover:border-teal-200 group-hover:-translate-y-1">
-        {/* Image */}
-        <div className="relative h-48 overflow-hidden">
+    <Link to={`/property/${property.id}`} className="group h-full">
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-orange-100 group-hover:border-teal-200 group-hover:-translate-y-1 h-full flex flex-col">
+        {/* Image*/}
+        <div className="relative h-48 w-full overflow-hidden">
           <img
             src={property.images[0]}
             alt={property.title}
@@ -43,38 +43,38 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         </div>
 
         {/* Content */}
-        <div className="p-5">
+        <div className="p-5 flex-1 flex flex-col">
           {/* Location */}
-          <div className="flex items-center text-slate-600 text-sm mb-2">
+          <div className="flex items-center text-slate-600 text-sm mb-2 min-h-[20px]">
             <MapPin className="h-4 w-4 mr-1 text-orange-500" />
-            <span>{property.location.district}, {property.location.city}</span>
+            <span className="truncate">{property.location.district}, {property.location.city}</span>
           </div>
 
-          {/* Title */}
-          <h3 className="font-semibold text-slate-900 mb-3 group-hover:text-teal-700 transition-colors line-clamp-2 text-lg">
+          {/* Title*/}
+          <h3 className="font-semibold text-slate-900 mb-3 group-hover:text-teal-700 transition-colors line-clamp-2 text-lg min-h-[56px]">
             {property.title}
           </h3>
 
           {/* Property Details */}
-          <div className="flex items-center space-x-4 text-sm text-slate-600 mb-4">
+          <div className="flex items-center space-x-2 text-sm text-slate-600 mb-4 flex-wrap">
             {property.bedrooms > 0 && (
-              <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg">
+              <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
                 <Bed className="h-4 w-4 mr-1 text-teal-600" />
                 <span>{property.bedrooms}</span>
               </div>
             )}
-            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg">
+            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
               <Bath className="h-4 w-4 mr-1 text-teal-600" />
               <span>{property.bathrooms}</span>
             </div>
-            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg">
+            <div className="flex items-center bg-slate-50 px-2 py-1 rounded-lg mb-1">
               <Square className="h-4 w-4 mr-1 text-teal-600" />
               <span>{property.area}m²</span>
             </div>
           </div>
 
-          {/* Amenities */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          {/* Amenities*/}
+          <div className="flex flex-wrap gap-2 mb-4 min-h-[40px]">
             {property.amenities.slice(0, 3).map((amenity) => (
               <span
                 key={amenity}
@@ -92,14 +92,16 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           </div>
 
           {/* Host Info */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4 mt-auto">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 flex items-center justify-center">
                 <span className="text-white text-xs font-bold">
                   {property.host.name.charAt(0)}
                 </span>
               </div>
-              <span className="text-sm text-slate-600">{property.host.name}</span>
+              <span className="text-sm text-slate-600 truncate max-w-[80px]">
+                {property.host.name}
+              </span>
             </div>
             <div className="flex items-center space-x-1">
               <Star className="h-4 w-4 text-amber-400 fill-current" />

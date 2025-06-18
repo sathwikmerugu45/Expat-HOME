@@ -30,7 +30,6 @@ const HomePage: React.FC = () => {
   const handleFilterChange = (filters: FilterOptions) => {
     let filtered = [...properties];
 
-    // Apply search query
     if (searchQuery) {
       filtered = filtered.filter(property =>
         property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -40,25 +39,20 @@ const HomePage: React.FC = () => {
       );
     }
 
-    // Apply city filter
     if (filters.city) {
       filtered = filtered.filter(property => property.location.city === filters.city);
     }
 
-    // Apply price filter
     filtered = filtered.filter(property => property.price <= filters.priceRange[1]);
 
-    // Apply property type filter
     if (filters.propertyType) {
       filtered = filtered.filter(property => property.type === filters.propertyType);
     }
 
-    // Apply minimum stay filter
     if (filters.minDuration > 1) {
       filtered = filtered.filter(property => property.minStay <= filters.minDuration);
     }
 
-    // Apply amenities filter
     if (filters.amenities.length > 0) {
       filtered = filtered.filter(property =>
         filters.amenities.every(amenity =>
@@ -74,7 +68,6 @@ const HomePage: React.FC = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // Re-apply current filters with new search query
     handleFilterChange({
       city: '',
       priceRange: [0, 2000],

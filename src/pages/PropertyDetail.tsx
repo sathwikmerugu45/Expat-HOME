@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { 
   MapPin, Star, Bed, Bath, Square, Wifi, Car, Shield, 
   Utensils, Waves, Dumbbell, Calendar, Clock, 
-  MessageCircle, Phone, Mail, ChevronLeft, ChevronRight
+  MessageCircle,ChevronLeft, ChevronRight
 } from 'lucide-react';
 import BookingForm from '../components/BookingForm';
 import { Property, BookingRequest } from '../types';
