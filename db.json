@@ -32,10 +32,7 @@
         "name": "Linh Nguyen",
         "rating": 4.8,
         "reviews": 127,
-        "languages": [
-          "Vietnamese",
-          "English"
-        ],
+        "languages": ["Vietnamese", "English"],
         "responseTime": "within 1 hour",
         "avatar": ""
       },
@@ -73,14 +70,14 @@
         "Private Pool",
         "Garden"
       ],
-      "images": ["https://static.designboom.com/wp-content/uploads/2021/04/junsekino-baan-38-bangkok-designboom-1.jpg"],
+      "images": [
+        "https://static.designboom.com/wp-content/uploads/2021/04/junsekino-baan-38-bangkok-designboom-1.jpg"
+      ],
       "host": {
         "name": "MSK",
         "rating": 4.5,
         "reviews": 0,
-        "languages": [
-          "English"
-        ],
+        "languages": ["English"],
         "responseTime": "within 1 hour",
         "avatar": ""
       },
@@ -88,6 +85,90 @@
       "minStay": 1,
       "maxStay": 12,
       "id": 2
+    },
+    {
+      "title": "Luxury Apartment with Petronas View",
+      "description": "Spacious 2-bedroom apartment in central Kuala Lumpur with a breathtaking view of the Petronas Towers. Features include a fully equipped kitchen, gym access, 24/7 security, and a rooftop pool. Ideal for professionals and expats.",
+      "price": 1200,
+      "currency": "USD",
+      "location": {
+        "city": "Kuala Lumpur",
+        "district": "KLCC",
+        "address": "21 Jalan Pinang, KLCC"
+      },
+      "type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "area": 85,
+      "amenities": [
+        "WiFi",
+        "Air Conditioning",
+        "Kitchen",
+        "Washing Machine",
+        "Balcony",
+        "Gym",
+        "Elevator",
+        "Security",
+        "Rooftop Pool",
+        "City View",
+        "Parking"
+      ],
+      "images": [
+        "https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg"
+      ],
+      "host": {
+        "name": "Aiman Zulkifli",
+        "rating": 4.9,
+        "reviews": 58,
+        "languages": ["Malay", "English"],
+        "responseTime": "within 2 hours",
+        "avatar": ""
+      },
+      "available": true,
+      "minStay": 1,
+      "maxStay": 6,
+      "id": 3
+    },
+    {
+      "title": "Tranquil Villa in Ubud, Bali",
+      "description": "Peaceful 1-bedroom private villa surrounded by rice fields in Ubud. Perfect for long stays or remote work retreats. Includes private pool, garden, open-air kitchen, and fast WiFi.",
+      "price": 950,
+      "currency": "USD",
+      "location": {
+        "city": "Bali",
+        "district": "Ubud",
+        "address": "Jalan Raya Ubud No.8"
+      },
+      "type": "Villa",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "area": 70,
+      "amenities": [
+        "WiFi",
+        "Private Pool",
+        "Garden",
+        "Kitchen",
+        "Workspace",
+        "Parking",
+        "Security",
+        "Outdoor Shower",
+        "Air Conditioning"
+      ],
+      "images": [
+        "https://images.pexels.com/photos/2611028/pexels-photo-2611028.jpeg"
+      ],
+      "host": {
+        "name": "Kadek Arya",
+        "rating": 4.7,
+        "reviews": 89,
+        "languages": ["Indonesian", "English"],
+        "responseTime": "within 1 hour",
+        "avatar": ""
+      },
+      "available": true,
+      "minStay": 3,
+      "maxStay": 30,
+      "id": 4
     }
   ],
   "bookings": [

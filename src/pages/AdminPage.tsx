@@ -43,6 +43,7 @@ const AdminPage: React.FC = () => {
   const propertyTypes = ['Studio', '1 Bedroom', '2 Bedroom', '3 Bedroom', 'Villa'];
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     fetchProperties();
   }, []);
 
