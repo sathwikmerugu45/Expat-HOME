@@ -52,4 +52,8 @@ export interface FilterOptions {
   propertyType: string;
   minDuration: number;
   amenities: string[];
+  bedrooms: number[];
+  furnishing: string[];
+  availability: string[];
+  hideAlreadySeen: boolean;
 }

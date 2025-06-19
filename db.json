@@ -73,7 +73,7 @@
         "Private Pool",
         "Garden"
       ],
-      "images": [],
+      "images": ["https://static.designboom.com/wp-content/uploads/2021/04/junsekino-baan-38-bangkok-designboom-1.jpg"],
       "host": {
         "name": "MSK",
         "rating": 4.5,
